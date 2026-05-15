@@ -4,16 +4,41 @@ import ContactCTA from '../components/ContactCTA';
 import { staggerContainer, staggerItem } from '../animations/variants';
 
 const stats = [
-  { num: '55+', label: 'Projects Completed' },
+  { num: '50+', label: 'Projects Delivered' },
   { num: '3+', label: 'Years Experience' },
-  { num: '15+', label: 'Happy Clients' },
+  { num: '10+', label: 'Brand Collabs' },
   { num: '8', label: 'Design Disciplines' },
 ];
 
 const experience = [
-  { year: '2024', role: 'Senior Creative Designer', org: 'Freelance', desc: 'Delivering premium brand identities, AI-creative work, and motion content for global clients.' },
-  { year: '2023', role: 'Visual Designer', org: 'Creative Studio', desc: 'Led design for social media campaigns, brand refreshes, and digital advertising.' },
-  { year: '2022', role: 'Graphic Designer', org: 'Agency Work', desc: 'Built foundational skills in print, digital, and brand design across diverse industries.' },
+  { 
+    year: 'May 2025 - Present', 
+    role: 'Graphic Designer Executive', 
+    org: 'CME LABORATORIES BHARAT PVT LTD', 
+    type: 'Full-time',
+    desc: 'Building CME into a visual experience that commands attention. Executing complete branding, AI-powered posters, cinematic product shoots, and strategic marketing collaterals. Key contributor for WIND EXPO 2025 (Chennai) and EXCON EXPO 2025 (Bengaluru), driving brand credibility and lead generation through visual storytelling.' 
+  },
+  { 
+    year: 'Mar 2025 - Apr 2025', 
+    role: 'Graphic Design & Digital Marketing Intern', 
+    org: 'CME LABORATORIES BHARAT PVT LTD', 
+    type: 'Internship',
+    desc: 'Contributed to branding, marketing creatives, and lead generation support. Designed social media content and promotional materials while collaborating on strategic campaign execution.' 
+  },
+  { 
+    year: 'Dec 2024 - Jan 2025', 
+    role: 'Web Development Intern', 
+    org: 'WearCheck Laboratories India Pvt ltd', 
+    type: 'Internship',
+    desc: 'Created and improved user-friendly, visually appealing websites. Designed layouts, enhanced UX, and ensured smooth functionality. Gained real-world experience in building structured, responsive web pages.' 
+  },
+  { 
+    year: 'May 2023 - Present', 
+    role: 'Freelance Graphic Designer', 
+    org: 'Remote', 
+    type: 'Freelance',
+    desc: 'Delivering engaging visual content for various global clients. Designing high-impact posters, banners, and digital creatives tailored for social media and marketing campaigns to boost audience engagement.' 
+  },
 ];
 
 export default function AboutPage() {
@@ -52,7 +77,7 @@ export default function AboutPage() {
           >
             Designer.
             <br />
-            <span style={{ color: '#555' }}>Storyteller.</span>
+            <span className="text-[#ffffff]">Storyteller.</span>
             <br />
             Creator.
           </motion.h1>
@@ -101,8 +126,8 @@ export default function AboutPage() {
               className="mt-6 space-y-4 text-soft-gray leading-relaxed"
             >
               <p>
-                I'm Sulaiman Kaif — a creative designer with over 3 years of experience 
-                crafting premium visual identities, bold editorial posters, AI-powered creative 
+                I'm Sulaiman Kaif — a creative designer specializing in crafting 
+                premium visual identities, bold editorial posters, AI-powered creative 
                 work, and cinematic motion content.
               </p>
               <p>
@@ -197,25 +222,28 @@ export default function AboutPage() {
           viewport={{ once: true }}
           className="text-xs uppercase tracking-[0.3em] text-electric-blue mb-8"
         >
-          Experience
+          Detailed Experience
         </motion.p>
         <div className="space-y-0">
           {experience.map((exp, i) => (
             <motion.div
-              key={exp.year}
+              key={exp.org + exp.role}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.7 }}
-              className="grid grid-cols-12 gap-6 py-8 border-t border-theme-invert/[0.06]"
+              className="grid grid-cols-12 gap-6 py-10 border-t border-theme-invert/[0.06]"
             >
-              <div className="col-span-2 md:col-span-1">
-                <span className="text-sm text-mid-gray font-display">{exp.year}</span>
+              <div className="col-span-12 md:col-span-3">
+                <span className="text-xs text-mid-gray uppercase tracking-widest font-medium block mb-1">{exp.year}</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-electric-blue/10 text-electric-blue border border-electric-blue/20 inline-block">
+                  {exp.type}
+                </span>
               </div>
-              <div className="col-span-10 md:col-span-11">
-                <h3 className="font-display font-semibold text-off-white text-lg">{exp.role}</h3>
-                <p className="text-electric-blue text-sm mt-0.5">{exp.org}</p>
-                <p className="text-soft-gray text-sm mt-2 leading-relaxed max-w-lg">{exp.desc}</p>
+              <div className="col-span-12 md:col-span-9">
+                <h3 className="font-display font-semibold text-off-white text-xl">{exp.role}</h3>
+                <p className="text-mid-gray text-sm mt-1 font-medium">{exp.org}</p>
+                <p className="text-soft-gray text-sm mt-4 leading-relaxed max-w-2xl">{exp.desc}</p>
               </div>
             </motion.div>
           ))}

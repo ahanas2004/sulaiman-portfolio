@@ -23,8 +23,8 @@ const footerLinks = {
 
 const socialLinks = [
   { label: 'Instagram', href: '#' },
-  { label: 'Behance', href: '#' },
-  { label: 'LinkedIn', href: '#' },
+  { label: 'Behance', href: 'https://www.behance.net/sulaimankaif' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sulaimankaif' },
   { label: 'Dribbble', href: '#' },
 ];
 
@@ -51,6 +51,8 @@ export default function Footer() {
                 <a
                   key={s.label}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs text-mid-gray hover:text-off-white transition-colors duration-200 uppercase tracking-wider"
                 >
                   {s.label}

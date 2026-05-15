@@ -55,7 +55,7 @@ export default function ContactPage() {
           >
             Let's create something
             <br />
-            <span style={{ color: '#555' }}>extraordinary.</span>
+            <span className="text-mid-gray">extraordinary.</span>
           </motion.h1>
         </div>
       </section>
@@ -73,9 +73,20 @@ export default function ContactPage() {
           >
             <div>
               <h3 className="text-xs uppercase tracking-[0.2em] text-soft-gray mb-4">Email</h3>
-              <a href="mailto:hello@sulaimankaif.com" className="text-xl text-off-white hover:text-electric-blue transition-colors">
-                hello@sulaimankaif.com
-              </a>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-mid-gray block mb-1">Work</span>
+                  <a href="mailto:createwithkaif@gmail.com" className="text-xl text-off-white hover:text-electric-blue transition-colors">
+                    createwithkaif@gmail.com
+                  </a>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-mid-gray block mb-1">Personal</span>
+                  <a href="mailto:speakwithkaif@gmail.com" className="text-xl text-off-white hover:text-electric-blue transition-colors">
+                    speakwithkaif@gmail.com
+                  </a>
+                </div>
+              </div>
             </div>
 
             <div>
@@ -90,13 +101,20 @@ export default function ContactPage() {
             <div>
               <h3 className="text-xs uppercase tracking-[0.2em] text-soft-gray mb-4">Socials</h3>
               <div className="flex flex-col gap-3">
-                {['Instagram', 'Behance', 'LinkedIn', 'Dribbble'].map((social) => (
+                {[
+                  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sulaimankaif' },
+                  { label: 'Behance', href: 'https://www.behance.net/sulaimankaif' },
+                  { label: 'Instagram', href: '#' },
+                  { label: 'Dribbble', href: '#' }
+                ].map((social) => (
                   <a
-                    key={social}
-                    href="#"
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-base text-off-white hover:text-electric-blue transition-colors w-fit flex items-center gap-2 group"
                   >
-                    {social}
+                    {social.label}
                     <span className="text-mid-gray opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
                       ↗
                     </span>

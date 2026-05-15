@@ -1,10 +1,17 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { cardHover, overlayHover, imageScaleHover } from '../animations/variants';
+import { overlayHover, imageScaleHover } from '../animations/variants';
 
-export default function ProjectCard({ project, index = 0 }) {
+export default function ProjectCard({ project, index = 0, onClick }) {
   const [hovered, setHovered] = useState(false);
+
+  const handleClick = (e) => {
+    if (onClick) {
+      e.preventDefault();
+      onClick(project);
+    }
+  };
 
   return (
     <motion.div
@@ -13,7 +20,7 @@ export default function ProjectCard({ project, index = 0 }) {
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.76, 0, 0.24, 1] }}
     >
-      <Link to={`/project/${project.slug}`}>
+      <Link to={`/project/${project.slug}`} onClick={handleClick}>
         <motion.article
           initial="rest"
           whileHover="hover"
@@ -54,8 +61,8 @@ export default function ProjectCard({ project, index = 0 }) {
                   ))}
                 </div>
                 <p className="text-[#f0ede8] text-xs line-clamp-2">{project.description}</p>
-                <div className="flex items-center gap-1 text-electric-blue text-xs font-medium">
-                  View Project
+                <div className="flex items-center gap-1 text-electric-blue text-xs font-medium uppercase tracking-wider">
+                  View Detail
                   <span>→</span>
                 </div>
               </div>
@@ -63,7 +70,7 @@ export default function ProjectCard({ project, index = 0 }) {
 
             {/* Category badge */}
             <div className="absolute top-4 left-4">
-              <span className="text-xs uppercase tracking-widest text-white/80 px-3 py-1.5 rounded-full" style={{ background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <span className="text-[10px] uppercase tracking-widest text-white/90 px-3 py-1.5 rounded-full font-bold" style={{ background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.1)' }}>
                 {project.category.replace('-', ' ')}
               </span>
             </div>
@@ -72,7 +79,7 @@ export default function ProjectCard({ project, index = 0 }) {
           {/* Card info — always visible */}
           <div className="p-4">
             <h3 className="font-display text-off-white font-semibold text-base leading-tight">{project.title}</h3>
-            <p className="text-soft-gray text-xs mt-1">{project.year}</p>
+            <p className="text-soft-gray text-[10px] uppercase tracking-widest mt-1.5 font-medium">{project.year}</p>
           </div>
         </motion.article>
       </Link>
