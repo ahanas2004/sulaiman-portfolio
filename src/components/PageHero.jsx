@@ -39,7 +39,7 @@ export default function PageHero({ eyebrow, title, subtitle, bgImage }) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
-          className="font-display font-semibold text-white"
+          className={`font-display font-semibold ${bgImage ? 'text-white' : 'text-off-white'}`}
           style={{ fontSize: 'clamp(2.5rem, 7vw, 5.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
         >
           {title}

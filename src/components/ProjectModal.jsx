@@ -17,19 +17,20 @@ export default function ProjectModal({ project, isOpen, onClose }) {
           />
 
           {/* Modal Content */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-7xl bg-charcoal rounded-[2.5rem] border border-white/5 shadow-[0_40px_100px_rgba(0,0,0,0.6)] overflow-hidden z-10 cursor-default"
-          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-7xl glass-strong rounded-[2.5rem] border border-white/5 shadow-[0_40px_100px_rgba(0,0,0,0.6)] overflow-hidden z-10 cursor-default"
+            >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 md:top-8 md:right-8 z-50 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"
+              className="absolute top-6 right-6 md:top-8 md:right-8 z-50 w-12 h-12 rounded-full bg-white/10 dark:bg-black/40 text-off-white backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-electric-blue hover:text-white hover:scale-110 transition-all duration-300 group"
+              aria-label="Close modal"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-90 transition-transform duration-300"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
 
             <div className="flex flex-col lg:flex-row lg:aspect-video min-h-[500px] max-h-[90dvh] overflow-y-auto lg:overflow-hidden">
@@ -54,7 +55,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
               </div>
 
               {/* Right Panel: Details */}
-              <div className="lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-gradient-to-br from-charcoal to-[#050505] relative border-l border-white/5">
+              <div className="lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center glass relative border-l border-white/5">
                 
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-6 md:mb-8">

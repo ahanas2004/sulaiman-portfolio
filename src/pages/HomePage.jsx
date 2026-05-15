@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import HeroSection from '../components/HeroSection';
 import ToolsSection from '../components/ToolsSection';
 import ContactCTA from '../components/ContactCTA';
 import ProjectCard from '../components/ProjectCard';
+import ProjectModal from '../components/ProjectModal';
 import SectionHeader from '../components/SectionHeader';
 import { getFeaturedProjects, categories } from '../data/projects';
-import { staggerContainer, staggerItem, fadeUp } from '../animations/variants';
+import { staggerContainer, staggerItem } from '../animations/variants';
 
 const featuredProjects = getFeaturedProjects(6);
 
@@ -24,10 +26,28 @@ const serviceCards = [
     route: '/posters',
   },
   {
+    icon: '⧉',
+    title: 'Expo Branding',
+    desc: 'Bespoke booth designs and large-scale exhibition graphics for events.',
+    route: '/branding',
+  },
+  {
+    icon: '🚀',
+    title: 'Performance Marketing',
+    desc: 'Strategic Meta & Google ad campaigns focused on growth and ROI.',
+    route: '/expertise',
+  },
+  {
+    icon: '🌐',
+    title: 'SEO & Growth',
+    desc: 'Technical SEO audits and content strategy to dominate search rankings.',
+    route: '/expertise',
+  },
+  {
     icon: '⬡',
-    title: 'AI Creatives',
-    desc: 'Generative AI art, ads, and concept visuals for the modern era.',
-    route: '/ai-works',
+    title: 'AI Automation',
+    desc: 'Leveraging generative AI for efficient marketing workflows and content.',
+    route: '/expertise',
   },
   {
     icon: '▶',
@@ -83,7 +103,7 @@ const AboutPreview = () => (
       >
         <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
           <img
-            src="https://picsum.photos/seed/aboutsk/700/900"
+            src="/cover.jpeg"
             alt="Sulaiman Kaif"
             className="w-full h-full object-cover"
             style={{ filter: 'brightness(0.8) saturate(0.8)' }}
@@ -170,7 +190,7 @@ const ServicesSection = () => (
   <section className="section-padding max-w-7xl mx-auto px-6 md:px-10">
     <SectionHeader
       eyebrow="What I Do"
-      title="Services"
+      title="Expertise"
       subtitle="Full-spectrum creative design tailored to make your brand unforgettable."
     />
     <motion.div
@@ -201,7 +221,7 @@ const ServicesSection = () => (
 );
 
 // Featured works section
-const FeaturedWorksSection = () => (
+const FeaturedWorksSection = ({ onProjectClick }) => (
   <section className="section-padding max-w-7xl mx-auto px-6 md:px-10">
     <div className="flex items-end justify-between mb-14">
       <SectionHeader
@@ -217,7 +237,7 @@ const FeaturedWorksSection = () => (
     </div>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {featuredProjects.map((project, i) => (
-        <ProjectCard key={project.id} project={project} index={i} />
+        <ProjectCard key={project.id} project={project} index={i} onClick={onProjectClick} />
       ))}
     </div>
     <div className="mt-10 text-center md:hidden">
@@ -244,23 +264,23 @@ const AIShowcaseSection = () => (
         subtitle="Cutting-edge AI-assisted visuals pushing the frontier of digital creativity."
       />
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {['ai1', 'ai2', 'ai3', 'ai5'].map((seed, i) => (
+        {['ai 1.jpeg', 'ai 2.jpeg', 'ai 3.jpeg', 'ai 4.jpeg'].map((img, i) => (
           <motion.div
-            key={seed}
+            key={img}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1, duration: 0.7 }}
             whileHover={{ scale: 1.03 }}
-            className="rounded-xl overflow-hidden"
+            className="rounded-xl overflow-hidden shadow-2xl"
             style={{ aspectRatio: '1/1.2' }}
           >
             <img
-              src={`https://picsum.photos/seed/${seed}/600/750`}
-              alt="AI creative work"
+              src={`/projects/${img}`}
+              alt="Generative AI work"
               loading="lazy"
               className="w-full h-full object-cover"
-              style={{ filter: 'brightness(0.8) saturate(0.9)' }}
+              style={{ filter: 'brightness(0.9) saturate(1.1)' }}
             />
           </motion.div>
         ))}
@@ -278,6 +298,8 @@ const AIShowcaseSection = () => (
 );
 
 export default function HomePage() {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   return (
     <>
       <HeroSection />
@@ -286,10 +308,16 @@ export default function HomePage() {
       <div className="hr-glass max-w-7xl mx-auto" />
       <ServicesSection />
       <div className="hr-glass max-w-7xl mx-auto" />
-      <FeaturedWorksSection />
+      <FeaturedWorksSection onProjectClick={setSelectedProject} />
       <AIShowcaseSection />
       <ToolsSection />
       <ContactCTA />
+
+      <ProjectModal 
+        project={selectedProject} 
+        isOpen={!!selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </>
   );
 }

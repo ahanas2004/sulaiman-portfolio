@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from './ProjectCard';
+import ProjectModal from './ProjectModal';
 
 export default function FilteredGallery({ projects, categories }) {
   const [active, setActive] = useState('all');
   const [search, setSearch] = useState('');
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const filtered = projects.filter((p) => {
     const matchCat = active === 'all' || p.category === active;
@@ -56,7 +58,7 @@ export default function FilteredGallery({ projects, categories }) {
         >
           {filtered.length ? (
             filtered.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} />
+              <ProjectCard key={project.id} project={project} index={i} onClick={setSelectedProject} />
             ))
           ) : (
             <div className="col-span-full text-center py-20 text-soft-gray">
@@ -65,6 +67,12 @@ export default function FilteredGallery({ projects, categories }) {
           )}
         </motion.div>
       </AnimatePresence>
+
+      <ProjectModal 
+        project={selectedProject} 
+        isOpen={!!selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </div>
   );
 }

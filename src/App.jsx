@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
@@ -19,16 +20,15 @@ import MockupsPage from './pages/MockupsPage';
 import SocialMediaPage from './pages/SocialMediaPage';
 import AIWorksPage from './pages/AIWorksPage';
 import VideosPage from './pages/VideosPage';
+import ExpertisePage from './pages/ExpertisePage';
 
 // ScrollToTop component to ensure pages start at top on navigation
 function ScrollToTop() {
   const { pathname } = useLocation();
   
-  import('react').then(React => {
-    React.useEffect(() => {
-      window.scrollTo(0, 0);
-    }, [pathname]);
-  });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   
   return null;
 }
@@ -41,6 +41,7 @@ export default function App() {
         <Route element={<RootLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/expertise" element={<ExpertisePage />} />
           <Route path="/contact" element={<ContactPage />} />
           
           <Route path="/posters" element={<PostersPage />} />

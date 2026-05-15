@@ -104,8 +104,7 @@ export default function ContactPage() {
                 {[
                   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sulaimankaif' },
                   { label: 'Behance', href: 'https://www.behance.net/sulaimankaif' },
-                  { label: 'Instagram', href: '#' },
-                  { label: 'Dribbble', href: '#' }
+                  { label: 'Instagram', href: '#' }
                 ].map((social) => (
                   <a
                     key={social.label}

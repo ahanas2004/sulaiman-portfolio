@@ -126,9 +126,9 @@ export default function HeroSection() {
           </Link>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 border border-[#ffffff]/40 text-[#ffffff] px-7 py-3.5 rounded-full text-sm font-bold hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 bg-electric-blue text-[#ffffff] px-7 py-3.5 rounded-full text-sm font-bold hover:bg-blue-400 transition-all duration-300 hover:shadow-lg shadow-[0_10px_30px_rgba(37,99,235,0.3)]"
           >
-            Let's Collaborate
+            Get in Touch
           </Link>
         </motion.div>
       </motion.div>

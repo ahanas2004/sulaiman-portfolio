@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../components/PageHero';
 import ProjectCard from '../components/ProjectCard';
 import ContactCTA from '../components/ContactCTA';
+import ProjectModal from '../components/ProjectModal';
 import SectionHeader from '../components/SectionHeader';
 import { getProjectsByCategory } from '../data/projects';
 import { staggerContainer, staggerItem } from '../animations/variants';
@@ -16,6 +18,8 @@ const aiCapabilities = [
 ];
 
 export default function AIWorksPage() {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   return (
     <>
       <PageHero
@@ -57,7 +61,7 @@ export default function AIWorksPage() {
         <SectionHeader eyebrow="Portfolio" title="AI Creative Gallery" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {aiProjects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
+            <ProjectCard key={project.id} project={project} index={i} onClick={setSelectedProject} />
           ))}
         </div>
       </section>
@@ -78,6 +82,12 @@ export default function AIWorksPage() {
       </section>
 
       <ContactCTA />
+
+      <ProjectModal 
+        project={selectedProject} 
+        isOpen={!!selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </>
   );
 }

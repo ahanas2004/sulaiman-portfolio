@@ -17,15 +17,15 @@ const footerLinks = {
   ],
   Connect: [
     { label: 'About', path: '/about' },
+    { label: 'Expertise', path: '/expertise' },
     { label: 'Contact', path: '/contact' },
   ],
 };
 
 const socialLinks = [
-  { label: 'Instagram', href: '#' },
+  { label: 'Instagram', href: 'https://www.instagram.com/sulaimankaif.png/' },
   { label: 'Behance', href: 'https://www.behance.net/sulaimankaif' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sulaimankaif' },
-  { label: 'Dribbble', href: '#' },
 ];
 
 export default function Footer() {

@@ -126,19 +126,21 @@ export default function AboutPage() {
               className="mt-6 space-y-4 text-soft-gray leading-relaxed"
             >
               <p>
-                I'm Sulaiman Kaif — a creative designer specializing in crafting 
-                premium visual identities, bold editorial posters, AI-powered creative 
-                work, and cinematic motion content.
+                I'm Sulaiman Kaif — a creative strategist and designer specializing 
+                in premium visual systems, performance marketing, and AI-powered 
+                automation workflows.
               </p>
               <p>
-                My work spans across logo design, branding, flyers, posters, product mockups, 
-                social media creatives, and AI generative art. I believe great design isn't just 
-                about looking good — it's about communicating something powerful at first glance.
+                My work bridges the gap between high-end design and technical marketing. 
+                I deliver cohesive brand ecosystems, strategic Meta/Google Ad campaigns, 
+                and data-driven SEO strategies that drive measurable business growth. 
+                I believe that every pixel should serve a purpose and every campaign 
+                should tell a compelling story.
               </p>
               <p>
-                Whether it's a complete brand identity system or a single-frame poster, 
-                I bring the same level of cinematic precision and creative boldness to 
-                every project I take on.
+                From luxury brand identities and cinematic video marketing to technical 
+                SEO audits and automated content funnels, I bring world-class precision 
+                to major projects and global brand collaborations.
               </p>
             </motion.div>
             <motion.div
@@ -168,7 +170,7 @@ export default function AboutPage() {
               style={{ aspectRatio: '4/3' }}
             >
               <img
-                src="https://picsum.photos/seed/sulaimanwork/900/700"
+                src="/about cover.jpeg"
                 alt="Creative workspace"
                 className="w-full h-full object-cover"
                 style={{ filter: 'brightness(0.75) saturate(0.7)' }}
@@ -186,11 +188,11 @@ export default function AboutPage() {
               <h3 className="text-xs uppercase tracking-widest text-soft-gray mb-5">Expertise</h3>
               <div className="space-y-4">
                 {[
-                  { skill: 'Brand Identity', level: 95 },
-                  { skill: 'Poster & Editorial Design', level: 92 },
-                  { skill: 'AI Creative Direction', level: 88 },
-                  { skill: 'Video Editing', level: 82 },
-                  { skill: 'Social Media Design', level: 90 },
+                  { skill: 'Brand Identity & Design', level: 95 },
+                  { skill: 'Performance Marketing (Ads)', level: 92 },
+                  { skill: 'SEO & Growth Strategy', level: 88 },
+                  { skill: 'AI Marketing Automation', level: 94 },
+                  { skill: 'Video & Motion Content', level: 90 },
                 ].map(({ skill, level }) => (
                   <div key={skill}>
                     <div className="flex justify-between text-xs mb-1.5">
