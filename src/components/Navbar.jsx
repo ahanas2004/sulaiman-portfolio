@@ -24,76 +24,147 @@ const navLinks = [
   { label: 'Contact', path: '/contact' },
 ];
 
-const MobileMenu = ({ isOpen, onClose }) => (
-  <AnimatePresence>
-    {isOpen && (
-      <motion.div
-        initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
-        animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
-        exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
-        transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-        className="fixed inset-0 z-40 flex flex-col justify-center items-center"
-        style={{ background: 'var(--overlay-bg)', backdropFilter: 'blur(30px)' }}
-      >
-        <nav className="flex flex-col items-center gap-8">
-          {navLinks.map((link, i) => (
-            <div key={link.label}>
-              {link.children ? (
-                <div className="text-center">
-                  <span className="text-soft-gray text-sm uppercase tracking-widest block mb-4">
-                    {link.label}
-                  </span>
-                  <div className="flex flex-col gap-3">
-                    {link.children.map((child) => (
-                      <motion.div
-                        key={child.path}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.05 * i, duration: 0.5 }}
-                      >
-                        <Link
-                          to={child.path}
-                          onClick={onClose}
-                          className="text-xl font-display text-off-white hover:text-electric-blue transition-colors duration-300 block"
-                        >
-                          {child.label}
-                        </Link>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.08 * i, duration: 0.6 }}
-                >
-                  <Link
-                    to={link.path}
-                    onClick={onClose}
-                    className="font-display text-5xl text-off-white hover:text-electric-blue transition-colors duration-300 block"
-                    style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)' }}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              )}
-            </div>
-          ))}
-        </nav>
+const MobileMenu = ({ isOpen, onClose }) => {
+  const [workOpen, setWorkOpen] = useState(false);
 
+  return (
+    <AnimatePresence>
+      {isOpen && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="absolute bottom-12 text-soft-gray text-sm"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+          className="fixed inset-0 z-40 flex flex-col"
+          style={{ background: 'var(--overlay-bg)', backdropFilter: 'blur(30px)' }}
         >
-          © 2024 Sulaiman Kaif
+          {/* Scrollable body (safe below the navbar ~70px) */}
+          <div className="flex-1 overflow-y-auto pt-24 pb-16 px-6">
+            <nav className="flex flex-col gap-1 max-w-sm mx-auto">
+
+              {navLinks.map((link, i) => {
+                if (link.children) {
+                  return (
+                    <div key={link.label}>
+                      {/* Work accordion trigger */}
+                      <motion.button
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.07, duration: 0.45 }}
+                        onClick={() => setWorkOpen((v) => !v)}
+                        className="w-full flex items-center justify-between py-4 border-b"
+                        style={{ borderColor: 'var(--glass-border)' }}
+                      >
+                        <span
+                          className="font-display font-semibold"
+                          style={{ fontSize: 'clamp(1.6rem, 6vw, 2.2rem)', color: 'var(--off-white)' }}
+                        >
+                          {link.label}
+                        </span>
+                        <motion.span
+                          animate={{ rotate: workOpen ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                          style={{ color: 'var(--electric-blue)', fontSize: 18 }}
+                        >
+                          ▾
+                        </motion.span>
+                      </motion.button>
+
+                      {/* Work sub-links */}
+                      <AnimatePresence>
+                        {workOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.35, ease: [0.76, 0, 0.24, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <div className="grid grid-cols-2 gap-2 py-3 pl-2">
+                              {link.children.map((child, ci) => (
+                                <motion.div
+                                  key={child.path}
+                                  initial={{ opacity: 0, y: 8 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: ci * 0.04, duration: 0.3 }}
+                                >
+                                  <Link
+                                    to={child.path}
+                                    onClick={onClose}
+                                    className="block text-sm font-medium px-3 py-2.5 rounded-xl text-center transition-all duration-200"
+                                    style={{
+                                      background: 'var(--glass-bg)',
+                                      border: '1px solid var(--glass-border)',
+                                      color: 'var(--soft-gray)',
+                                    }}
+                                  >
+                                    {child.label}
+                                  </Link>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+
+                return (
+                  <motion.div
+                    key={link.label}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.07, duration: 0.45 }}
+                  >
+                    <Link
+                      to={link.path}
+                      onClick={onClose}
+                      className="flex items-center justify-between w-full py-4 border-b transition-colors duration-200"
+                      style={{ borderColor: 'var(--glass-border)' }}
+                    >
+                      <span
+                        className="font-display font-semibold"
+                        style={{ fontSize: 'clamp(1.6rem, 6vw, 2.2rem)', color: 'var(--off-white)' }}
+                      >
+                        {link.label}
+                      </span>
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--electric-blue)" strokeWidth="1.8">
+                        <path d="M3 9h12M9 3l6 6-6 6"/>
+                      </svg>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </nav>
+          </div>
+
+          {/* Bottom bar */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.35 }}
+            className="flex items-center justify-between px-6 pb-8 pt-4 border-t"
+            style={{ borderColor: 'var(--glass-border)' }}
+          >
+            <span className="text-sm" style={{ color: 'var(--soft-gray)' }}>© 2024 Sulaiman Kaif</span>
+            <Link
+              to="/contact"
+              onClick={onClose}
+              className="text-sm font-semibold px-5 py-2 rounded-full"
+              style={{
+                background: 'linear-gradient(135deg, var(--electric-blue), #8b5cf6)',
+                color: '#fff',
+              }}
+            >
+              Get in touch
+            </Link>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    )}
-  </AnimatePresence>
-);
+      )}
+    </AnimatePresence>
+  );
+};
 
 const DropdownMenu = ({ items }) => (
   <motion.div

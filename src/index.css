@@ -140,6 +140,16 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--soft-gray);
 }
 
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
 /* ─── Selection ───────────────────────────────────── */
 ::selection {
   background: rgba(59, 130, 246, 0.3);
